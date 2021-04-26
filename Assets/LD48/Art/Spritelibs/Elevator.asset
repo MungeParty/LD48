@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: Elevator
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: occupied
+    m_Hash: 394871773
+    m_CategoryList:
+    - m_Name: elevator_0
+      m_Hash: -1718604144
+      m_Sprite: {fileID: -6722264024765363516, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_3
+      m_Hash: 10059562
+      m_Sprite: {fileID: 6664438344429953077, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_6
+      m_Hash: 1895009189
+      m_Sprite: {fileID: 6880846697461902957, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_9
+      m_Hash: -531851724
+      m_Sprite: {fileID: 8315172382783622799, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+  - m_Name: broken
+    m_Hash: -492065676
+    m_CategoryList:
+    - m_Name: elevator_0
+      m_Hash: -1718604144
+      m_Sprite: {fileID: 6050902575335759564, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_3
+      m_Hash: 10059562
+      m_Sprite: {fileID: 5548568535943700782, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_6
+      m_Hash: 1895009189
+      m_Sprite: {fileID: 5023890054352944236, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_9
+      m_Hash: -531851724
+      m_Sprite: {fileID: -4422945024969790635, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+  - m_Name: available
+    m_Hash: -1517312891
+    m_CategoryList:
+    - m_Name: elevator_0
+      m_Hash: -1718604144
+      m_Sprite: {fileID: -5931314644190716391, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_3
+      m_Hash: 10059562
+      m_Sprite: {fileID: 6353425485700077076, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_6
+      m_Hash: 1895009189
+      m_Sprite: {fileID: 7301364594327214320, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
+    - m_Name: elevator_9
+      m_Hash: -531851724
+      m_Sprite: {fileID: 6007333197173454650, guid: 9e4ef8bc25a31ae4e8b21d0c702f876d, type: 3}
