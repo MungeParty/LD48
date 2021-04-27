@@ -27,15 +27,13 @@ public class Objective : MonoBehaviour
     private void Start()
     {
         instances.Add(this);
-        //room = GetComponentInParent<ShipRoom>();
-        //room?.AddObjective(this);
+        if (transform.parent != null)
+            room = transform.parent.GetComponent<ShipRoom>();
     }
 
     private void OnDestroy()
     {
         instances.Remove(this);
-        //room?.RemoveObjective(this);
-        //room = null;
     }
 
     [SerializeField]

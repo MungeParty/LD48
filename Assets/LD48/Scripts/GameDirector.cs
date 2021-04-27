@@ -169,17 +169,13 @@ public class GameDirector : MonoBehaviour
 
     public bool isLoaded;
 
-    public delegate GamePhases UpdatePhase(GamePhases phase);
-
-    Dictionary<GamePhases, UpdatePhase> phaseUpdates = new Dictionary<GamePhases, UpdatePhase>();
-
     private void Start()
     {
+        isLoaded = false;
     }
 
     private void FixedUpdate()
     {
-        isLoaded = false;
         UpdateCurrentPhase();
     }
 
@@ -210,6 +206,7 @@ public class GameDirector : MonoBehaviour
                 nextPhase = UpdateWarping(phase);
                 break;
         }
+
         if (nextPhase == GamePhases.None) return;
         phase = nextPhase;
         nextPhase = GamePhases.None;

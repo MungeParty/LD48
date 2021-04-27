@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/LD48/Scenes/Menu.unity
     guid: f2084101282fbd749a5ba984f6015a5c
   - enabled: 1
-    path: Assets/LD48/Scenes/LD48.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/LD48/Scenes/Gameplay.unity
+    guid: ee5c9c8b59b495346b97faf7a24e2b1c
   m_configObjects: {}

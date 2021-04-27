@@ -3,33 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate float SystemReadModifier(float baseValue, float modifiedValue);
-public delegate float SystemEndTurnModifier(float baseValue, float modifiedValue);
-
-public struct SystemModifier
-{
-    public SystemReadModifier onRead;
-    public SystemEndTurnModifier onEndTurn;
-
-    public SystemModifier(SystemReadModifier read, SystemEndTurnModifier turn)
-    {
-        onRead = read;
-        onEndTurn = turn;
-    }
-
-    public float Read(float baseValue, float modifiedValue)
-    {
-        if (onRead == null) return modifiedValue;
-        return onRead(baseValue, modifiedValue);
-    }
-
-    public float EndTurn(float oldValue, float modifiedValue)
-    {
-        if (onEndTurn == null) return modifiedValue;
-        return onEndTurn(oldValue, modifiedValue);
-    }
-}
-
 public enum Rooms
 {
     Bridge,
@@ -58,6 +31,7 @@ public enum ShipSystems
     LifeSupport
 }
 
+[System.Serializable]
 public struct ShipSystemState
 {
     private float _value;
@@ -82,12 +56,11 @@ public struct ShipSystemState
         }
     }
 
-    public ShipSystemState(ShipSystems _system, float _baseValue, List<SystemModifier> _modifiers = null)
+    public ShipSystemState(ShipSystems _system, float _baseValue)
     {
         system = _system;
         _value = Mathf.Clamp01(_baseValue);
         _lastValue = _value;
-        //modifiers = _modifiers != null ? _modifiers : new List<SystemModifier>();
     }
 
     public float value
@@ -96,27 +69,18 @@ public struct ShipSystemState
         {
             float _base = baseValue;
             float value = _base;
-            //foreach (SystemModifier modifier in modifiers)
-            //    value = Mathf.Clamp01(modifier.Read(_base, value));
             return value;
         }
     }
 
-    public void EndTurn()
-    {
-        //float _base = baseValue;
-        //float value = _base;
-        //foreach (SystemModifier modifier in modifiers)
-            //value = Mathf.Clamp01(modifier.EndTurn(_base, value));
-    }
 }
 
 public class Ship : MonoBehaviour
 {
-    //public ShipEnvironment environment;
+    public ShipEnvironment environment;
 
     private void Start()
     {
-        //environment = GetComponent<ShipEnvironment>();
+        if (environment == null) environment = GetComponent<ShipEnvironment>();
     }
 }

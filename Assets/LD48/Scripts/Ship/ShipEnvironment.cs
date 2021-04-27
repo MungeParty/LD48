@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ShipEnvironment : MonoBehaviour
 {
+    public static float fullPowerGravityForce = 120;
+
     // non-100% starting systems:
     private static Dictionary<ShipSystems, float> systemDefaults =
         new Dictionary<ShipSystems, float>() {
@@ -12,11 +14,8 @@ public class ShipEnvironment : MonoBehaviour
             { ShipSystems.Cargo, 0f }
         };
 
-    public static float fullPowerGravityForce = 120;
-
-    public List<ShipSystemState> systems = new List<ShipSystemState>();
-
-    public Dictionary<ShipSystems, int> systemLookup = new Dictionary<ShipSystems, int>();
+    [SerializeField]
+    public Dictionary<ShipSystems, ShipSystemState> systems = new Dictionary<ShipSystems, ShipSystemState>();
 
     private ShipEnvironment parentEnvironment;
 
@@ -24,7 +23,7 @@ public class ShipEnvironment : MonoBehaviour
     {
         // look for parent
         if (transform.parent != null && parentEnvironment == null)
-            parentEnvironment = GetComponentInParent<ShipEnvironment>();
+            parentEnvironment = transform.parent.GetComponent<ShipEnvironment>();
 
         // register all systems
         Array systemsTypes = Enum.GetValues(typeof(ShipSystems));
@@ -32,126 +31,114 @@ public class ShipEnvironment : MonoBehaviour
         {
             float baseValue = systemDefaults.ContainsKey(systemType)
                 ? systemDefaults[systemType] : 1f;
-            systems.Add(new ShipSystemState(systemType, baseValue));
-            systemLookup[systemType] = systems.Count - 1;
+            systems[systemType] = new ShipSystemState(systemType, baseValue);
         }
     }
 
-    /// <summary>
-    /// warp charge, starts at 0f
-    /// </summary>
+    public bool isInitialized
+    {
+        get
+        {
+            return systems.Count > 0;
+        }
+    }
+
     public float warpPercent
     {
         get
         {
+            if (!isInitialized) return 1f;
             float inherited = 1f;
             if (parentEnvironment != null)
                 inherited = parentEnvironment.warpPercent;
-            return inherited * systems[systemLookup[ShipSystems.Warp]].value;
+            return inherited * systems[ShipSystems.Warp].value;
         }
     }
 
-    /// <summary>
-    /// cargo capacity, starts at 0f
-    /// </summary>
     public float cargoPercent
     {
         get
         {
+            if (!isInitialized) return 1f;
             float inherited = 1f;
             if (parentEnvironment != null)
                 inherited = parentEnvironment.cargoPercent;
-            return inherited * systems[systemLookup[ShipSystems.Cargo]].value;
+            return inherited * systems[ShipSystems.Cargo].value;
         }
     }
 
-    /// <summary>
-    /// hull percent
-    /// </summary>
     public float hullPercent
     {
         get
         {
+            if (!isInitialized) return 1f;
             float inherited = 1f;
             if (parentEnvironment != null)
                 inherited = parentEnvironment.hullPercent;
-            return inherited * systems[systemLookup[ShipSystems.Hull]].value;
+            return inherited * systems[ShipSystems.Hull].value;
         }
     }
 
-    /// <summary>
-    /// power bank charge level, starts 1f
-    /// </summary>
     public float powerPercent
     {
         get
         {
+            if (!isInitialized) return 1f;
             float inherited = 1f;
             if (parentEnvironment != null)
                 inherited = parentEnvironment.powerPercent;
-            return inherited * systems[systemLookup[ShipSystems.Power]].value;
+            return inherited * systems[ShipSystems.Power].value;
         }
     }
 
-    /// <summary>
-    /// shields percent
-    /// </summary>
     public float shiledsPercent
     {
         get
         {
+            if (!isInitialized) return 1f;
             float inherited = 1f;
             if (parentEnvironment != null)
                 inherited = parentEnvironment.shiledsPercent;
-            return inherited * systems[systemLookup[ShipSystems.Shields]].value;
+            return inherited * systems[ShipSystems.Shields].value;
         }
     }
 
-    /// <summary>
-    /// sensors percent
-    /// </summary>
     public float sensorsPercent
     {
         get
         {
+            if (!isInitialized) return 1f;
             float inherited = 1f;
             if (parentEnvironment != null)
                 inherited = parentEnvironment.sensorsPercent;
-            return inherited * systems[systemLookup[ShipSystems.Sensors]].value;
+            return inherited * systems[ShipSystems.Sensors].value;
         }
     }
 
-    /// <summary>
-    /// gravity system percent
-    /// </summary>
     public float gravityPercent
     {
         get
         {
+            if (!isInitialized) return 1f;
             float inherited = 1f;
             if (parentEnvironment != null)
                 inherited = parentEnvironment.gravityPercent;
-            return inherited * systems[systemLookup[ShipSystems.Gravity]].value;
+            return inherited * systems[ShipSystems.Gravity].value;
         }
     }
 
-    /// <summary>
-    /// life support system percent
-    /// </summary>
     public float lifeSupportPercent
     {
         get
         {
+            if (!isInitialized) return 1f;
             float inherited = 1f;
             if (parentEnvironment != null)
                 inherited = parentEnvironment.lifeSupportPercent;
-            return inherited * systems[systemLookup[ShipSystems.LifeSupport]].value;
+            return inherited * systems[ShipSystems.LifeSupport].value;
         }
     }
 
-    /// <summary>
-    /// whether or not any power is available
-    /// </summary>
     public bool isPowered
     {
         get
@@ -160,14 +147,10 @@ public class ShipEnvironment : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// current gravity force
-    /// </summary>
     public float gravityForce
     {
         get
         {
-            //return fullPowerGravityForce;
             return gravityPercent == 0f ? 0f : (0.5f + 0.5f * gravityPercent) * fullPowerGravityForce;
         }
     }

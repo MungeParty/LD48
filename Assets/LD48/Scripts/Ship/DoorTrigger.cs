@@ -8,17 +8,20 @@ public class DoorTrigger : MonoBehaviour
 
     private void Start()
     {
-        door = GetComponentInParent<Door>();
+        if (transform.parent != null)
+            door = transform.parent.GetComponent<Door>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (door == null) return;
         if (collision.gameObject.tag == Crew.Tag)
             door.DoorEntered(true);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (door == null) return;
         if (collision.gameObject.tag == Crew.Tag)
             door.DoorEntered();
     }

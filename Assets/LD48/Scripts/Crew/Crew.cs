@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Crew : MonoBehaviour
 {
     // crew profile
     public CrewProfileSO profile;
+    public GameObject CrewUIPanel;
 
     // active profficiencies
     public List<ProfficiencyLevel> profficiencies;
@@ -85,7 +89,7 @@ public class Crew : MonoBehaviour
     public float moveDirection;
 
     public bool wantsToSprint = false;
-    
+
     public bool isWorkign = false;
 
     public bool isHurt = false;
@@ -137,6 +141,8 @@ public class Crew : MonoBehaviour
         // roll profficiencies wat wat
         RollProfficiencies();
         instances.Add(this);
+        SetUI();
+        CrewUIPanel.GetComponent<Button>().onClick.AddListener(OnClickPanel);
     }
 
     private void OnDestroy()
@@ -169,11 +175,11 @@ public class Crew : MonoBehaviour
 
     private void UpdateEnvironment()
     {
-        //if (room == null)
-        //    DoRoomCheck();
+        if (room == null)
+            DoRoomCheck();
 
-        //gravity = room.environment.gravityForce;
-        //hasGravity = gravity > Mathf.Epsilon;
+        gravity = room.environment.gravityForce;
+        hasGravity = gravity > Mathf.Epsilon;
     }
 
     private void UpdateWithGravity()
@@ -340,7 +346,7 @@ public class Crew : MonoBehaviour
             // play hurt
             targetClip = Hurt;
         }
-        else if(isWorkign)
+        else if (isWorkign)
         {
             // play work loop
             targetClip = Work;
@@ -431,7 +437,8 @@ public class Crew : MonoBehaviour
 
     public void DoRoomCheck()
     {
-        //room = GetComponentInParent<ShipRoom>();
+        if (transform.parent != null)
+            room = transform.parent.GetComponent<ShipRoom>();
     }
 
     public void NoticeAssignment(TaskAssignment assignment)
@@ -470,5 +477,18 @@ public class Crew : MonoBehaviour
             }
         }
         profficiencies = result;
+    }
+
+    private void SetUI()
+    {
+        TextMeshProUGUI name = CrewUIPanel.GetComponentsInChildren<TextMeshProUGUI>().First(c => c.name == "Name");
+        name.text = profile.Name;
+    }
+
+    private void OnClickPanel()
+    {
+        Debug.Log(profile.Name);
+        GameObject detailedList = CrewUIPanel.transform.Find("DetailedTaskLists").gameObject;
+        detailedList.SetActive(!detailedList.activeSelf);
     }
 }
