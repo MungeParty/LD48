@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Doctor
   m_EditorClassIdentifier: 
   Name: Dr. Assan
-  CrewColor: {r: 0.117906675, g: 0.29724988, b: 0.8679245, a: 0.7882353}
+  CrewColor: {r: 0.41176474, g: 0.20392159, b: 0.23137257, a: 1}
   Bio: A lebanese doctor
   Job: 2
   proficiencies:

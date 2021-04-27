@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad13fc61d1d242d4bb936892989c0652, type: 3}
   m_Name: New Task SO
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Hurt
   ProfficiencyLevel:
-    level: 0
-    type: 0
+    level: 3
+    type: 19
   ClearanceLevel: 0
   taskRoom: 0
   system: 0

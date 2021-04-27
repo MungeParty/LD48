@@ -26,15 +26,17 @@ public class DoorTrigger : MonoBehaviour
             door.DoorEntered();
     }
 
-    //private void OnTrigger(Collider other)
-    //{
-    //    Crew crew = other.gameObject.GetComponent<Crew>();
-    //    if (crew != null)
-    //    {
-    //        crew.room = crew.transform.position.x < transform.position.x
-    //            ? door.left 
-    //            : door.right;
-    //        crew.transform.SetParent(crew.room.transform, true);
-    //    }
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Crew crew = collision.gameObject.GetComponent<Crew>();
+        if (crew != null)
+        {
+            ShipRoom room = crew.transform.position.x < transform.position.x
+                ? door.left
+                : door.right;
+            if (room == null && crew.room != null) return;
+            crew.room = room;
+            crew.transform.SetParent(crew.room.transform, true);
+        }
+    }
 }

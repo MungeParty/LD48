@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pilot
   m_EditorClassIdentifier: 
   Name: SPO Johnson
-  CrewColor: {r: 0, g: 1, b: 0, a: 0.48235294}
+  CrewColor: {r: 0.58431375, g: 0.7725491, b: 0.7176471, a: 1}
   Bio: An american pilot
   Job: 1
   proficiencies:

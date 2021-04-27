@@ -7,6 +7,18 @@ using UnityEngine.UI;
 
 public class Crew : MonoBehaviour
 {
+    public static List<Crew> GetRoomies(Rooms room)
+    {
+        List<Crew> results = new List<Crew>();
+        foreach (Crew crew in instances)
+        {
+            if (crew == null || crew.room == null
+                || crew.room.room != room) continue;
+            results.Add(crew);
+        }
+        return results;
+    }
+
     // crew profile
     public CrewProfileSO profile;
     public GameObject CrewUIPanel;

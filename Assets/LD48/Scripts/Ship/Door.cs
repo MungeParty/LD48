@@ -23,7 +23,7 @@ public class Door : MonoBehaviour
 
     [SerializeField]
     private float victimHealResetTime = 5f;
-    
+
 
     [SerializeField]
     private float doorSpeed = 10f;
@@ -43,7 +43,7 @@ public class Door : MonoBehaviour
     {
         if (floor == null && transform.parent != null)
             floor = transform.parent.GetComponent<ShipFloor>();
-        
+
         doorStartY = sprite.transform.position.y;
         targetY = doorStartY + doorOffsetMax;
     }
@@ -53,7 +53,7 @@ public class Door : MonoBehaviour
         if (floor == null) return;
         if (floor.environment.isPowered && collider2d.enabled && sprite.transform.position.y == doorStartY)
         {
-            if (enter || Random.value * 4f < floor.environment.sensorsPercent)
+            if (enter || Random.value * 6f < floor.environment.sensorsPercent)
                 closeTime = Time.time + enterOpenTime;
         }
     }
@@ -71,7 +71,7 @@ public class Door : MonoBehaviour
             {
                 pos.y = targetY;
                 sprite.transform.position = pos;
-                collider2d.enabled = false;
+                EnableDoor();
             }
             else
             {
@@ -79,7 +79,7 @@ public class Door : MonoBehaviour
                 sprite.transform.position = pos;
                 float offsetY = pos.y - doorStartY;
                 if (offsetY > 8)
-                    collider2d.enabled = false;
+                    EnableDoor();
             }
         }
         else if (victim == null)
@@ -124,5 +124,12 @@ public class Door : MonoBehaviour
                 victim.DoHurt(new Vector2(Mathf.Sign(dir.x) * 2f, 1f));
             }
         }
+    }
+
+    private void DisableDoor()
+    {
+        collider2d.enabled = true;
+        if (left != null) left.WakeRoom();
+        if (right != null) left.WakeRoom();
     }
 }

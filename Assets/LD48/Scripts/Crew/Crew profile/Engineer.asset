@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Engineer
   m_EditorClassIdentifier: 
   Name: Sapper Kechichian
-  CrewColor: {r: 0.6226415, g: 0.1139551, b: 0.53159153, a: 0.85882354}
+  CrewColor: {r: 0.10980393, g: 0.42352945, b: 0.015686275, a: 1}
   Bio: A romanian engineer
   Job: 4
   proficiencies:
