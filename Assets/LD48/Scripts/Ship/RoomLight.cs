@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoomLight : MonoBehaviour
 {
+    public float lightSpeed = 0.025f;
+
     private List<Light> lights;
     private float baseIntensity;
     private float currentIntenity;
@@ -41,19 +43,17 @@ public class RoomLight : MonoBehaviour
         }
         else
         {
+            if (Random.value > room.environment.powerPercent * 1.33f)
+                currentIntenity *= 0.8f;
+
             if (currentIntenity != targetIntenstiy)
             {
                 float diff = targetIntenstiy - currentIntenity;
-                float rate = 100f * Time.deltaTime;
+                float rate = Mathf.Sign(diff) * lightSpeed * Time.deltaTime;
                 if ((diff > 0 && rate > diff) || (diff < 0 && rate < diff))
                     currentIntenity = targetIntenstiy;
                 else
-                    currentIntenity += diff;
-            }
-            else
-            {
-                if (Random.value > room.environment.powerPercent * 1.33f)
-                    currentIntenity *= 0.6f;
+                    currentIntenity += rate;
             }
 
             actualIntensity = baseIntensity * currentIntenity;
