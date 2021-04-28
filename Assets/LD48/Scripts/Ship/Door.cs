@@ -5,6 +5,9 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private static RaycastHit2D[] doorHits = new RaycastHit2D[6];
+    private static List<Crew> _removals = new List<Crew>();
+
+    private List<Crew> occupants = new List<Crew>();
 
     public ShipFloor floor;
     public ShipRoom left;
@@ -13,7 +16,7 @@ public class Door : MonoBehaviour
     public LayerMask triggerLayer;
 
     [HideInInspector]
-    public  ContactFilter2D filter = new ContactFilter2D();
+    public ContactFilter2D filter = new ContactFilter2D();
 
     [SerializeField]
     private Collider2D collider2d;
@@ -58,17 +61,38 @@ public class Door : MonoBehaviour
         targetY = doorStartY + doorOffsetMax;
     }
 
-    public void DoorEntered(bool enter = false)
+    public void DoorEntered(Crew crew)
     {
+        if (!occupants.Contains(crew)) occupants.Add(crew);
         if (floor == null) return;
         if (floor.environment.isPowered && collider2d.enabled && sprite.transform.position.y == doorStartY)
-        {
-            if (enter || Random.value * 6f < floor.environment.sensorsPercent)
-                closeTime = Time.time + enterOpenTime;
-        }
+            closeTime = Time.time + enterOpenTime;
     }
 
     private void FixedUpdate()
+    {
+        UpdateOccupants();
+        UpdateDoorState();
+    }
+
+    private void UpdateOccupants()
+    {
+        _removals.Clear();
+        foreach (Crew crew in occupants)
+        {
+            float offset = crew.transform.position.x - transform.position.x;
+            crew.ChangeRoom(offset < -0f ? left : right);
+            if (Mathf.Abs(offset) > 16f)
+                _removals.Add(crew);
+        }
+        foreach (Crew crew in _removals)
+        {
+            occupants.Remove(crew);
+        }
+        _removals.Clear();
+    }
+
+    private void UpdateDoorState()
     {
         if (floor == null || !floor.environment.isPowered) return;
 
@@ -94,6 +118,13 @@ public class Door : MonoBehaviour
         }
         else if (victim == null)
         {
+            if (collider2d.enabled) return;
+            if (trigger.PlayerCheck(doorHits))
+            {
+                closeTime = Time.time + enterOpenTime;
+                return;
+            }
+
             float remaining = doorStartY - pos.y;
             float delta = Mathf.Sign(remaining) * doorSpeed * doorSpeedCurve.Evaluate(floor.environment.powerPercent) * Time.deltaTime;
             if (Mathf.Abs(remaining) < Mathf.Abs(delta))
@@ -120,13 +151,6 @@ public class Door : MonoBehaviour
 
     private void EnableDoor()
     {
-        if (collider2d.enabled) return;
-        if (trigger.PlayerCheck())
-        {
-            closeTime = Time.time + enterOpenTime;
-            return;
-        }
-
         collider2d.enabled = true;
         int count = collider2d.Cast(Vector2.zero, filter, doorHits);
         for (int i = 0; i < count; i++)
@@ -146,7 +170,5 @@ public class Door : MonoBehaviour
     {
         if (!collider2d.enabled) return;
         collider2d.enabled = false;
-        if (left != null) left.WakeRoom();
-        if (right != null) left.WakeRoom();
     }
 }

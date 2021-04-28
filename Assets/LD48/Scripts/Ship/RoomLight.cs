@@ -44,7 +44,7 @@ public class RoomLight : MonoBehaviour
             if (currentIntenity != targetIntenstiy)
             {
                 float diff = targetIntenstiy - currentIntenity;
-                float rate = 0.00001f - (0.0001f * room.environment.powerPercent) * Time.deltaTime;
+                float rate = 100f * Time.deltaTime;
                 if ((diff > 0 && rate > diff) || (diff < 0 && rate < diff))
                     currentIntenity = targetIntenstiy;
                 else
@@ -53,7 +53,7 @@ public class RoomLight : MonoBehaviour
             else
             {
                 if (Random.value > room.environment.powerPercent * 1.33f)
-                    currentIntenity *= 0.8f;
+                    currentIntenity *= 0.6f;
             }
 
             actualIntensity = baseIntensity * currentIntenity;

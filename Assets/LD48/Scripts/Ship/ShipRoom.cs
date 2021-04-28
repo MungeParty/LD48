@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipRoom : MonoBehaviour
 {
-    public float RoomIdleTimeout = 5f;
+    public float roomIdleTimeout = 0.1f;
     public bool isAwake = true;
 
     public Rooms room;
@@ -26,12 +26,12 @@ public class ShipRoom : MonoBehaviour
     {
         if (Time.time > nextIdleCheck)
         {
-            nextIdleCheck = Time.time + RoomIdleTimeout;
+            ResetIdleCheck();
             if (Crew.GetRoomies(room).Count >= 1)
             {
                 WakeRoom();
             }
-            else 
+            else
             {
                 SleepRoom();
             }
@@ -41,11 +41,10 @@ public class ShipRoom : MonoBehaviour
     public void WakeRoom()
     {
         if (isAwake) return;
-        isAwake = true;
-
         if (Random.value > environment.sensorsPercent * 4f)
             return;
 
+        isAwake = true;
         foreach (RoomLight light in roomLights)
             light.intensity = 1.0f;
     }
@@ -57,5 +56,10 @@ public class ShipRoom : MonoBehaviour
 
         foreach (RoomLight light in roomLights)
             light.intensity = 0.2f;
+    }
+
+    private void ResetIdleCheck()
+    {
+        nextIdleCheck = Time.time + roomIdleTimeout + Random.value * 0.05f;
     }
 }

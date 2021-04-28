@@ -453,6 +453,14 @@ public class Crew : MonoBehaviour
             room = transform.parent.GetComponent<ShipRoom>();
     }
 
+    public void ChangeRoom(ShipRoom _room)
+    {
+        if ((_room == null && room != null) || _room == room) return;
+        room = _room;
+        transform.SetParent(room.transform, true);
+        room.WakeRoom();
+    }
+
     public void NoticeAssignment(TaskAssignment assignment)
     {
         //if (assignments)
