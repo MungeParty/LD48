@@ -14,7 +14,7 @@ TagManager:
   - UI
   - Hull
   - Door
-  - 
+  - Crew
   - 
   - 
   - 
@@ -44,6 +44,9 @@ TagManager:
     locked: 0
   - name: Gameplay
     uniqueID: 1975986963
+    locked: 0
+  - name: Foreground
+    uniqueID: 3569233687
     locked: 0
   - name: Default
     uniqueID: 0

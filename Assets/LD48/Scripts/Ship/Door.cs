@@ -10,9 +10,16 @@ public class Door : MonoBehaviour
     public ShipRoom left;
     public ShipRoom right;
     public Crew victim;
+    public LayerMask triggerLayer;
+
+    [HideInInspector]
+    public  ContactFilter2D filter = new ContactFilter2D();
 
     [SerializeField]
     private Collider2D collider2d;
+
+    [SerializeField]
+    private DoorTrigger trigger;
 
     [SerializeField]
     private GameObject sprite;
@@ -34,15 +41,18 @@ public class Door : MonoBehaviour
     [SerializeField]
     private AnimationCurve doorSpeedCurve = new AnimationCurve();
 
-
     private float closeTime;
     private float doorStartY;
     private float targetY;
 
     private void Start()
     {
+        filter.useLayerMask = true;
+        filter.layerMask = triggerLayer;
         if (floor == null && transform.parent != null)
             floor = transform.parent.GetComponent<ShipFloor>();
+        if (trigger == null)
+            trigger = GetComponentInChildren<DoorTrigger>();
 
         doorStartY = sprite.transform.position.y;
         targetY = doorStartY + doorOffsetMax;
@@ -71,7 +81,7 @@ public class Door : MonoBehaviour
             {
                 pos.y = targetY;
                 sprite.transform.position = pos;
-                EnableDoor();
+                DisableDoor();
             }
             else
             {
@@ -79,7 +89,7 @@ public class Door : MonoBehaviour
                 sprite.transform.position = pos;
                 float offsetY = pos.y - doorStartY;
                 if (offsetY > 8)
-                    EnableDoor();
+                    DisableDoor();
             }
         }
         else if (victim == null)
@@ -98,7 +108,7 @@ public class Door : MonoBehaviour
                 sprite.transform.position = pos;
                 float offsetY = pos.y - doorStartY;
                 if (offsetY < 8)
-                    EnableDoor();
+                    DisableDoor();
             }
         }
         else
@@ -111,8 +121,14 @@ public class Door : MonoBehaviour
     private void EnableDoor()
     {
         if (collider2d.enabled) return;
+        if (trigger.PlayerCheck())
+        {
+            closeTime = Time.time + enterOpenTime;
+            return;
+        }
+
         collider2d.enabled = true;
-        int count = collider2d.Cast(Vector2.zero, doorHits);
+        int count = collider2d.Cast(Vector2.zero, filter, doorHits);
         for (int i = 0; i < count; i++)
         {
             RaycastHit2D hit = doorHits[i];
@@ -128,7 +144,8 @@ public class Door : MonoBehaviour
 
     private void DisableDoor()
     {
-        collider2d.enabled = true;
+        if (!collider2d.enabled) return;
+        collider2d.enabled = false;
         if (left != null) left.WakeRoom();
         if (right != null) left.WakeRoom();
     }
