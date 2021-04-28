@@ -25,6 +25,8 @@ public class RoomLight : MonoBehaviour
         baseIntensity = lights.Count > 0 ? lights[0].intensity : 1f;
         if (room == null && transform.parent != null)
             room = transform.parent.GetComponentInParent<ShipRoom>();
+        currentIntenity = 0f;
+        targetIntenstiy = 1f;
     }
 
     private void FixedUpdate()
@@ -42,7 +44,7 @@ public class RoomLight : MonoBehaviour
             if (currentIntenity != targetIntenstiy)
             {
                 float diff = targetIntenstiy - currentIntenity;
-                float rate = 0.3f - (0.3f * room.environment.powerPercent) * Time.deltaTime;
+                float rate = 0.001f - (0.001f * room.environment.powerPercent) * Time.deltaTime;
                 if ((diff > 0 && rate > diff) || (diff < 0 && rate < diff))
                     currentIntenity = targetIntenstiy;
                 else
@@ -50,8 +52,8 @@ public class RoomLight : MonoBehaviour
             }
             else
             {
-                if (Random.value < 0.25f * room.environment.powerPercent)
-                    currentIntenity *= 0.2f;
+                if (Random.value > room.environment.powerPercent * 1.33f)
+                    currentIntenity *= 0.8f;
             }
 
             actualIntensity = baseIntensity * currentIntenity;
