@@ -24,7 +24,7 @@ public class Crew : MonoBehaviour
     public GameObject CrewUIPanel;
 
     // active profficiencies
-    public List<ProfficiencyLevel> profficiencies;
+    public List<ProficiencyLevel> profficiencies;
 
     // list of assignments
     public List<TaskAssignment> assignments = new List<TaskAssignment>();
@@ -473,7 +473,7 @@ public class Crew : MonoBehaviour
     public void RollProfficiencies()
     {
         if (!profile) return;
-        List<ProfficiencyLevel> result = new List<ProfficiencyLevel>();
+        List<ProficiencyLevel> result = new List<ProficiencyLevel>();
         foreach (ProfileProficiencies roll in profile.proficiencies)
         {
             int level = 0;
@@ -485,7 +485,7 @@ public class Crew : MonoBehaviour
             if (level > 0)
             {
                 int sortIndex = result.FindIndex(0, other => other.level <= level);
-                if (sortIndex > -1) result.Insert(sortIndex, new ProfficiencyLevel(roll.type, level));
+                if (sortIndex > -1) result.Insert(sortIndex, new ProficiencyLevel(roll.type, level));
             }
         }
         profficiencies = result;
@@ -495,6 +495,7 @@ public class Crew : MonoBehaviour
     {
         TextMeshProUGUI name = CrewUIPanel.GetComponentsInChildren<TextMeshProUGUI>().First(c => c.name == "Name");
         name.text = profile.Name;
+        name.color = profile.CrewColor;
     }
 
     private void OnClickPanel()

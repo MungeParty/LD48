@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soldier
   m_EditorClassIdentifier: 
   Name: Cadet Lesueur
-  CrewColor: {r: 0.81568635, g: 0.3254902, b: 0.18431373, a: 1}
+  CrewColor: {r: 1, g: 0.26154137, b: 0, a: 1}
   Bio: A french Soldier
   Job: 3
   proficiencies:

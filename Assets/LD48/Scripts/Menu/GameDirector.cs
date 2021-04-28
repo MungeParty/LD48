@@ -13,7 +13,7 @@ public enum CrewMembers
     Chef
 }
 
-public enum ProfficiencyTypes
+public enum ProficiencyTypes
 {
     // education
     Medical,        // doc 3
@@ -58,16 +58,16 @@ public enum TaskPriority
 }
 
 [Serializable]
-public struct ProfficiencyLevel
+public struct ProficiencyLevel
 {
     public int level;
-    public ProfficiencyTypes type;
+    public ProficiencyTypes type;
 
-    public ProfficiencyLevel(ProfficiencyTypes _type) : this(_type, 1)
+    public ProficiencyLevel(ProficiencyTypes _type) : this(_type, 1)
     {
     }
 
-    public ProfficiencyLevel(ProfficiencyTypes _type, int _level)
+    public ProficiencyLevel(ProficiencyTypes _type, int _level)
     {
         type = _type;
         level = _level;
@@ -79,33 +79,33 @@ public struct ProfficiencyLevel
 public struct TaskCost
 {
     public int baseCost;
-    public List<ProfficiencyLevel> bonuses;
+    public List<ProficiencyLevel> bonuses;
 
-    public TaskCost(int _baseCost, List<ProfficiencyLevel> _bonuses)
+    public TaskCost(int _baseCost, List<ProficiencyLevel> _bonuses)
     {
         baseCost = _baseCost;
         bonuses = _bonuses;
     }
 
-    public int Calculate(List<ProfficiencyLevel> profficiencies)
+    public int Calculate(List<ProficiencyLevel> profficiencies)
     {
         // return if no bonuses available
         if (bonuses == null) return baseCost;
         // each bonus allows removal of [level] turns
         // from the base cost...
         int cost = baseCost;
-        foreach (ProfficiencyLevel bonus in bonuses)
+        foreach (ProficiencyLevel bonus in bonuses)
         {
-            // count down from max bonus for this profficiency
+            // count down from max bonus for this proficiency
             int bonusLevel = bonus.level;
-            foreach (ProfficiencyLevel profficiency in profficiencies)
+            foreach (ProficiencyLevel proficiency in profficiencies)
             {
-                // if no bonus left for this profficiency, go to next
+                // if no bonus left for this proficiency, go to next
                 if (bonusLevel <= 0 || cost <= 1) break;
                 // skip type mismatch
-                if (profficiency.type != bonus.type) continue;
+                if (proficiency.type != bonus.type) continue;
                 // get bonus amount from this skill
-                int bonusDelta = Math.Min(profficiency.level, bonusLevel);
+                int bonusDelta = Math.Min(proficiency.level, bonusLevel);
                 // subtract from cost and bonus
                 bonusLevel -= bonusDelta;
                 cost = Mathf.Max(1, cost - bonusDelta);

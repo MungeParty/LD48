@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public struct ProfileProficiencies
 {
-    public ProfficiencyTypes type;
+    public ProficiencyTypes type;
     public int level;
     public bool isRandom;
     public int min;

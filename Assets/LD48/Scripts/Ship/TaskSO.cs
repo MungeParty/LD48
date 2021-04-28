@@ -6,7 +6,7 @@ using UnityEngine;
 public class TaskSO : ScriptableObject
 {
     public string Name;
-    public ProfficiencyLevel ProfficiencyLevel;
+    public ProficiencyLevel ProficiencyLevel;
     public int ClearanceLevel;
     public Rooms taskRoom;
     public ShipSystems system;

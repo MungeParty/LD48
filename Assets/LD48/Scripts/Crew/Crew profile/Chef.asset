@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chef
   m_EditorClassIdentifier: 
   Name: Chef Muller
-  CrewColor: {r: 0.6117647, g: 0.54901963, b: 0, a: 1}
+  CrewColor: {r: 0.7242327, g: 0.85882354, b: 0, a: 1}
   Bio: A german Chef
   Job: 6
   proficiencies:

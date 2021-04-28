@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Technician
   m_EditorClassIdentifier: 
   Name: Tech Ansaldi
-  CrewColor: {r: 0.14901961, g: 0.2901961, b: 0.48627454, a: 1}
+  CrewColor: {r: 0, g: 0.41860485, b: 1, a: 1}
   Bio: An italian technician
   Job: 5
   proficiencies:
