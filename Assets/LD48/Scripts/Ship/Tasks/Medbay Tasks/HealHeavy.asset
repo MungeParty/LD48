@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: HealHeavy
   m_EditorClassIdentifier: 
   Name: Heal a heavy injury on a crew member
-  ProfficiencyLevel:
-    level: 4
+  ProficiencyLevel:
+    level: 0
     type: 0
   ClearanceLevel: 0
+  Priority: 5
   taskRoom: 10
   system: 0

@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: CleanBridge
   m_EditorClassIdentifier: 
   Name: Clean the bridge
-  ProfficiencyLevel:
-    level: 2
-    type: 11
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 2
+  taskRoom: 0
   system: 1

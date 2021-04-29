@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: DestroyAsteroid
   m_EditorClassIdentifier: 
   Name: Destroy the asteroids around the ship
-  ProfficiencyLevel:
-    level: 3
-    type: 14
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 7
   taskRoom: 2
   system: 0

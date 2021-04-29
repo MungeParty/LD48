@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: FindThief
   m_EditorClassIdentifier: 
   Name: Find the thief
-  ProfficiencyLevel:
-    level: 2
-    type: 14
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 3
   taskRoom: 2
   system: 0

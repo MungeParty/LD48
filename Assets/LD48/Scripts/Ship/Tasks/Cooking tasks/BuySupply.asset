@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BuySupply
   m_EditorClassIdentifier: 
   Name: Buy supplies from the station
-  ProfficiencyLevel:
-    level: 2
-    type: 10
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 5
   taskRoom: 6
   system: 0

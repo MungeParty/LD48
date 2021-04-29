@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CookLight
   m_EditorClassIdentifier: 
   Name: Cook a snack for the crew
-  ProfficiencyLevel:
-    level: 2
-    type: 9
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 3
   taskRoom: 9
   system: 0

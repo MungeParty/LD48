@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: RessucitateCrew
   m_EditorClassIdentifier: 
   Name: Ressucitate a dead crew member
-  ProfficiencyLevel:
-    level: 9
+  ProficiencyLevel:
+    level: 0
     type: 0
   ClearanceLevel: 0
+  Priority: 8
   taskRoom: 10
   system: 0

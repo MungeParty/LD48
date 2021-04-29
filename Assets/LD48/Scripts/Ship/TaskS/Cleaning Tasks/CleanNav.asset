@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CleanNav
   m_EditorClassIdentifier: 
   Name: Clean the navigation room
-  ProfficiencyLevel:
-    level: 3
-    type: 11
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 2
   taskRoom: 3
   system: 1

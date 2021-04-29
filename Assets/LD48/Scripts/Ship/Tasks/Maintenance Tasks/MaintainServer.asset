@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MaintainServer
   m_EditorClassIdentifier: 
   Name: Maintain the ship Servers
-  ProfficiencyLevel:
-    level: 2
-    type: 1
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 3
   taskRoom: 5
   system: 7

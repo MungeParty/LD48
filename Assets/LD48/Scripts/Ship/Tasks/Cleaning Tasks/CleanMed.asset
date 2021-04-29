@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CleanMed
   m_EditorClassIdentifier: 
   Name: Clean the Medical Bay
-  ProfficiencyLevel:
-    level: 1
-    type: 11
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 2
   taskRoom: 10
   system: 1

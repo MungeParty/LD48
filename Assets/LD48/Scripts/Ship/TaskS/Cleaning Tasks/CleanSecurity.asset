@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CleanSecurity
   m_EditorClassIdentifier: 
   Name: Clean the cargo room
-  ProfficiencyLevel:
-    level: 1
-    type: 11
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 2
   taskRoom: 2
   system: 1

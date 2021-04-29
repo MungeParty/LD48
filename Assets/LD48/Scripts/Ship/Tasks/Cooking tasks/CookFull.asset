@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CookFull
   m_EditorClassIdentifier: 
   Name: Cook a full meal course for the crew
-  ProfficiencyLevel:
-    level: 6
-    type: 9
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 3
   taskRoom: 9
   system: 0

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BringSupplyKitchen
   m_EditorClassIdentifier: 
   Name: Bring the supply in the kitchen
-  ProfficiencyLevel:
-    level: 3
-    type: 9
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 2
   taskRoom: 6
   system: 0

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: DefendShip
   m_EditorClassIdentifier: 
   Name: Defend the ship from pirate
-  ProfficiencyLevel:
-    level: 6
-    type: 14
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 9
   taskRoom: 2
   system: 0

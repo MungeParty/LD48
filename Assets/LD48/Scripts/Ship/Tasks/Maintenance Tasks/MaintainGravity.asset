@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MaintainGravity
   m_EditorClassIdentifier: 
   Name: Maintain the gravity generator
-  ProfficiencyLevel:
-    level: 5
-    type: 2
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 3
   taskRoom: 8
   system: 6

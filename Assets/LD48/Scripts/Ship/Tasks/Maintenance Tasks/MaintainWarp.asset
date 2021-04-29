@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MaintainWarp
   m_EditorClassIdentifier: 
   Name: Maintain the warp drive
-  ProfficiencyLevel:
-    level: 3
-    type: 2
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 3
   taskRoom: 7
   system: 7

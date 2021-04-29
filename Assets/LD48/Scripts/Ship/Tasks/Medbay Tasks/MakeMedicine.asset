@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MakeMedicine
   m_EditorClassIdentifier: 
   Name: Craft some medicine for the medbay
-  ProfficiencyLevel:
-    level: 2
+  ProficiencyLevel:
+    level: 0
     type: 0
   ClearanceLevel: 0
+  Priority: 2
   taskRoom: 6
   system: 0

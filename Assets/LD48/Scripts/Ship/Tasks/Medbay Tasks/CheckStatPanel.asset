@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CheckStatPanel
   m_EditorClassIdentifier: 
   Name: Check the crew stat panel in the medbay
-  ProfficiencyLevel:
-    level: 3
+  ProficiencyLevel:
+    level: 0
     type: 0
   ClearanceLevel: 0
+  Priority: 2
   taskRoom: 10
   system: 0

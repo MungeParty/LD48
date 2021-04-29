@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MaintainOxygen
   m_EditorClassIdentifier: 
   Name: Maintain the oxygen generator
-  ProfficiencyLevel:
-    level: 2
+  ProficiencyLevel:
+    level: 0
     type: 0
   ClearanceLevel: 0
+  Priority: 3
   taskRoom: 0
   system: 7

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MaintainShield
   m_EditorClassIdentifier: 
   Name: Maintain the shield generator
-  ProfficiencyLevel:
-    level: 2
-    type: 2
+  ProficiencyLevel:
+    level: 0
+    type: 0
   ClearanceLevel: 0
+  Priority: 3
   taskRoom: 2
   system: 7
